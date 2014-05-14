@@ -1,0 +1,28 @@
+<div class="cartnoItems">
+    <table id="shopping-cart-table" class="cart-table">
+        <col width="80"/>
+        <col/>
+        <col width="80"/>
+        <col width="80"/>
+        <col width="80"/>
+        <col width="100"/>
+        <thead>
+        <tr>
+            <th><span class="table_first"> 图片</span></th>
+            <th><span class="nobr"><?php echo $this->__('Product Name') ?></span></th>
+            <th><?php echo $this->__('单价(元)') ?></th>
+            <th><?php echo $this->__('数量') ?></th>
+            <th><?php echo $this->__('小计(元)') ?></th>
+            <th><?php echo $this->__('') ?>操作</th>
+        </tr>
+        </thead>
+        <tbody>
+        <td colspan="6">
+            <div class="noitem">
+                <h2><?php echo $this->__('您的购物车暂无商品，赶快选择心爱的商品吧！') ?></h2>
+                <p><?php echo $this->__('<a href="%s">点击继续购物</a>.', $this->getContinueShoppingUrl()) ?></p>
+            </div>
+        </td>
+        </tbody>
+    </table>
+</div>

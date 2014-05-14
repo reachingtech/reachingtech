@@ -1,0 +1,6 @@
+<form action="<?php echo $this->getFormActionUrl() ?>" method="post" id="newsletter-validate-detail">
+    <dt for="newsletter">想获取最新上架信息吗？</dt>
+  <dd class="alertfrom" style="padding: 5px; border-bottom: 1px solid #eee; background: none">
+    <input type="text" name="email" id="newsletter" onfocus="if(this.value=='请输入你的邮箱地址') this.value='';" onblur="if(this.value=='') this.value='请输入你的邮箱地址';" value="请输入你的邮箱地址" class="ipt" /><input type="submit" value="<?php echo $this->__('Subscribe') ?>" class="btn" />
+  </dd>
+</form>

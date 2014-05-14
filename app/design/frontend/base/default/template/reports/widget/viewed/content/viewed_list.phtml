@@ -1,0 +1,19 @@
+
+<?php if ($_products = $this->getRecentlyViewedProducts()): ?>
+<div class="block widget-viewed">
+	<div class="block-title">
+        <h2><span class="bfR"><a href="<?php echo $this->helper('catalog/product_view')->getClearViewListUrl() ?>" class="clear_btn" ><?php echo $this->__('Clear All') ?></a></span><?php echo $this->__('Recently Viewed') ?></h2>
+	</div>
+	<div class="block-content">
+		<ol class="min-products-list">
+		<?php $i=0; foreach ($_products as $_product): ?>
+			<li class="item<?php echo (++$i == count($_products))?' last':''; ?>">
+
+						<a class="product-name"><a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $this->htmlEscape($_product->getName()) ?>"><?php echo $this->htmlEscape($_product->getName()) ?></a>
+
+			</li>
+		<?php endforeach; ?>
+		</ol>
+	</div>
+</div>
+<?php endif; ?>

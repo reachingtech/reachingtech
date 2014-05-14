@@ -1,0 +1,26 @@
+<?php if ($_products = $this->getRecentlyViewedProducts()): ?>
+
+<div class="block widget-viewed">
+    <div class="block-title">
+        <h2><span class="bfR"><a href="<?php echo $this->helper('catalog/product_view')->getClearViewListUrl() ?>"
+                                 class="clear_btn"><?php echo $this->__('Clear All') ?></a></span><?php echo $this->__('Recently Viewed') ?>
+        </h2>
+    </div>
+    <div class="block-content">
+        <div class="min-products-grid">
+            <?php $i = 0; foreach ($_products as $_product): ?>
+            <dl class="clearfix">
+                <dt class="pic"><a href="<?php echo $_product->getProductUrl() ?>"
+                                   title="<?php echo $this->htmlEscape($_product->getName()) ?>"
+                                   class="product-image"><img
+                    src="<?php echo $this->helper('catalog/image')->init($_product, 'small_image')->resize(56) ?>"
+                    alt="<?php echo $this->htmlEscape($_product->getName()) ?>"/></a></dt>
+                <dd class="product-name"><a href="<?php echo $_product->getProductUrl() ?>"
+                                            title="<?php echo $this->htmlEscape($_product->getName()) ?>"><?php echo $this->htmlEscape($_product->getName()) ?></a><?php echo $this->getPriceHtml($_product, true, '-widget-viewed-grid') ?>
+                </dd>
+            </dl>
+            <?php endforeach; ?>
+        </div>
+    </div>
+</div>
+<?php endif; ?>

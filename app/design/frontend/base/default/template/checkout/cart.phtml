@@ -1,0 +1,65 @@
+<div class="cartpage clearfix">
+    <h2 class="step-title"><?php echo $this->__('Shopping Cart') ?></h2>
+    <form id="cart-form" action="javascript:void(0);" method="post">
+    	<table id="shopping-cart-table" class="cart-table">
+    		<col width="80"/>
+            <col/>
+            <col width="80"/>
+            <col width="100"/>
+            <col width="80"/>
+            <?php if (Mage::helper('core')->isModuleEnabled('Makingware_RewardPoints') && Mage::helper('rewardpoints')->isActive()):?>
+            <col width="80"/>
+            <?php endif;?>
+            <col width="60"/>
+            <thead>
+                <tr>
+                    <th><span class="table_first">图片</span></th>
+                    <th><span class="nobr"><?php echo $this->__('Product Name') ?></span></th>
+                    <th>单价(元)</th>
+                    <th>数量</th>
+                    <th>小计(元)</th>
+                    <?php if (Mage::helper('core')->isModuleEnabled('Makingware_RewardPoints') && Mage::helper('rewardpoints')->isActive()):?>
+                    <th>赠送积分</th>
+                    <?php endif;?>
+                    <th>操作</th>
+                </tr>
+             </thead>
+             <tbody>
+              	<?php foreach ($this->getItems() as $_item): ?>
+                    <?php echo $this->getItemHtml($_item) ?>
+                <?php endforeach ?>
+              </tbody>
+              <tfoot></tfoot>
+         </table>
+     </form>
+     <div class="cart-table clearfix" style="border: none; margin: 0 0 35px; ">
+       	<div class="clear">
+             <b class="icon icon_clear"></b>
+             <a class="btn-continue" href="#" onclick="location.href='<?php echo $this->getUrl('checkout/cart/clear') ?>'"><?php echo $this->__('Shopping cart was cleared') ?></a>
+             <?php if (Mage::getSingleton('customer/session')->isLoggedIn()): ?>
+             <a id="move-wishlist" href="#" class="btn-continue"><?php echo $this->__('Shopping cart moved to favorites') ?></a>
+             <?php endif; ?>
+        </div>
+        <div class="totals">
+             <dl>
+             	 <?php if (Mage::helper('core')->isModuleEnabled('Makingware_RewardPoints')):?>
+                 	<?php echo $this->getHelper('rewardpoints/checkout_cart_totals')->toHtml();?>
+                 <?php endif;?>
+                 <?php echo $this->getChildHtml('totals'); ?>
+             </dl>
+             <?php if (!$this->hasError()): ?>
+             <div class="checkout-types">
+
+                 <?php if ($this->getContinueShoppingUrl()): ?>
+                 <a href="#" class="btn_common" onclick="setLocation('<?php echo $this->getContinueShoppingUrl() ?>')"><?php echo $this->__('Continue Shopping') ?></a>
+                 <?php endif; ?>
+                 <?php #echo $this->getChildHtml('methods') ?>
+                 <a class="btn_strong btn-checkout" href="javascript:checkoutLinkDialog();"><?php echo $this->__('Proceed to Checkout')?></a>
+             </div>
+             <p class="gre"><?php echo $this->__('If you have coupons/gift card, please use the next check process');?></p>
+             <?php endif; ?>
+         </div>
+         <script type="text/javascript">decorateTable('shopping-cart-table')</script>
+	 </div>
+     <div class="cart-collaterals"><?php echo $this->getChildHtml('crosssell') ?></div>
+</div>

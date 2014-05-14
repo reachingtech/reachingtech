@@ -1,0 +1,10 @@
+<?php $_menu = ''?>
+<?php foreach ($this->getStoreCategories() as $_category): ?>
+<?php $_menu .= $this->drawItem($_category) ?>
+<?php endforeach ?>
+<ul class="nav">
+  <li><a href="<?php echo $this->getUrl('/') ?>">首页</a></li>
+<?php if ($_menu): ?>
+  <?php echo $_menu ?>
+<?php endif ?>
+</ul>

@@ -1,0 +1,61 @@
+<div class="user_login clearfix">
+	<div class="loginbox">
+	   <div id="tipmessage" style="color:red;"></div>
+		<form id="link-loginmini-form" action="<?php echo $this->getPostUrl() ?>" method="post">
+		<fieldset>
+			<ul class="form_list">
+				<li class="fields">
+					<label for="login-email" class="label-like"><?php echo $this->__('Account') ?></label>
+					<div class="input-box">
+						<input type="text" class="input-text " id="login-email" name="useremail" validata="required:true" value="用户名/邮箱" style="color: rgb(153, 153, 153);" onfocus="if(this.value=='用户名/邮箱'){this.value=''; this.style.color='#333'}" onblur="if(this.value=='') {this.value='用户名/邮箱';this.style.color='#999';}" />
+						<span class="prompt-msg" message=""></span>
+					</div>
+				</li>
+				<li class="fields">
+					<label for="login-password" class="label-like"><?php echo $this->__('password') ?></label>
+					<div class="input-box">
+						<input type="password" class="input-text" id="login-password" name="password" validata="required:true" />
+
+						<span class="prompt-msg" message=""></span>
+					</div>
+				</li>
+				<li class="fields">
+					<div class="buttons-set">
+						<button type="submit" class="button"><span><span><?php echo $this->__('Checkout Login') ?></span></span></button>&nbsp;&nbsp;<a href="<?php echo $this->getUrl('customer/account/forgotpassword') ?>"><?php echo $this->__('Forgot your password?') ?></a>
+					</div>
+				</li>
+			</ul>
+		</fieldset>
+		</form>
+	</div>
+
+	<div class="reg_guest">
+		<ul class="form-list">
+			<li class="control">
+				<a class="reg" href='javascript:setLocation("<?php echo $this->getRegisterAction() ?>")'><?php echo $this->__('Registered as a member');?></a>
+				<p><?php echo $this->__('By creating an account with our store, you will be able to move through the checkout process faster, store multiple shipping addresses, view and track your orders in your account and more.') ?></p>
+			</li>
+			<?php if( $this->isAllowedGuestCheckout() ): ?>
+			<li class="control">
+				<a class="guest" href='javascript:setLocation("<?php echo $this->getCheckoutAction() ?>")'><?php echo $this->__('Visitors directly buy');?></a>
+				<p><?php echo $this->__('Checkout as Guest');?></p>
+			</li>
+			<?php endif; ?>
+		</ul>
+	</div>
+</div>
+<script type="text/javascript">
+//<![CDATA[
+ $(function(){
+	 var $form = makingware.form.getInstance('#link-loginmini-form', {
+	     error: {
+	         required: '<?php echo Mage::helper('core')->__('Required Fields');?>',
+	         email: '<?php echo Mage::helper('core')->__('Invalid %s address');?>'
+	     }
+	 });
+	 $('#link-loginmini-form').submit(function(){
+		return $form.isValidata($(this));
+	 });
+ });
+//]]>
+</script>
